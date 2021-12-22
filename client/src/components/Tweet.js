@@ -3,7 +3,7 @@ export default function Tweet(props) {
   return (
     <article className="tweet">
       <header className="tweet--header">
-        <img className="tweet--avatar" alt="" src={avatar} />
+        <img className="tweet--avatar" alt="avatar" src={avatar} />
         <h2 className="tweet--name">{name}</h2>
         <small className="tweet--handle">{handle}</small>
       </header>
