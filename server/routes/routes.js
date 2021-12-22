@@ -8,9 +8,7 @@ router.get("/users", function (req, res) {
   userQueries
     .getAllUsers()
     .then((response) => {
-      console.log(response);
-      const users = response.rows;
-      res.json({ users });
+      res.json(response.rows);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
@@ -21,9 +19,7 @@ router.get("/tweets", function (req, res) {
   userQueries
     .getAllTweets()
     .then((response) => {
-      console.log(response);
-      const tweets = response.rows;
-      res.json({ tweets });
+      res.json( response.rows );
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
