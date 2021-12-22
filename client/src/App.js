@@ -6,14 +6,17 @@ import TweetList from './components/TweetList';
 import useAppData from './hooks/useAppData';
 
 function App() {
-  const { state } = useAppData();
+  const { tweets, users, refreshTweets } = useAppData();
   return (
     <div className="App">
       <Navigation />
       <Profile />
       <main className="container">
-        <TweetForm />
-        <TweetList tweets={state.tweets} users={state.users}/>
+        <TweetForm refreshTweets={refreshTweets} />
+        <TweetList 
+          tweets={tweets}
+          users={users}
+        />
         <div className="round-btn">
           <i className="round-btn__icon fas fa-angle-double-up"></i>
         </div>

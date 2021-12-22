@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const userQueries = require("../db/queries");
+const queries = require("../db/queries");
 
 // GET /api/users/
 // tester
 router.get("/users", function (req, res) {
-  userQueries
+  queries
     .getAllUsers()
     .then((response) => {
       res.json(response.rows);
@@ -16,7 +16,7 @@ router.get("/users", function (req, res) {
 });
 
 router.get("/tweets", function (req, res) {
-  userQueries
+  queries
     .getAllTweets()
     .then((response) => {
       res.json( response.rows );
@@ -26,12 +26,27 @@ router.get("/tweets", function (req, res) {
     });
 });
 
+router.post("/tweets", (req, res) => {
+  const tweet = {
+    content: req.body.content,
+    user_id: req.body.user_id
+  }
+queries
+  .addTweet(tweet)
+  .then(data => {
+    console.log('success add: ', data);
+    res.send({status: 200, message: "add new tweet"});
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
 
 //route to get user login info
 router.post("/login", (req, res) => {
   const user = req.body;
 
-  userQueries.getUserByEmail(user.email).then((response) => {
+  queries.getUserByEmail(user.email).then((response) => {
     //check if email exists
     if (!response.rows[0]) {
       return res
@@ -65,7 +80,7 @@ router.post("/register", (req, res) => {
   if (email === "" || password === "") {
     return res.status(400).send("Please fill out a valid email and password");
   }
-  userQueries
+  queries
     .addUser(user)
     .then((response) => {
       console.log(response);
