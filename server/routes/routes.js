@@ -67,11 +67,15 @@ router.post("/login", (req, res) => {
 
 //route to get user register info
 router.post("/register", (req, res) => {
+  const name = req.body.name;
+  const handle = req.body.handle;
+  const avatar = req.body.avatar;
   const email = req.body.email;
   const password = req.body.password;
-  const name = req.body.name;
   const user = {
     name,
+    handle,
+    avatar,
     email,
     password,
     is_admin: false,
@@ -84,7 +88,7 @@ router.post("/register", (req, res) => {
     .addUser(user)
     .then((response) => {
       console.log(response);
-      userQueries.getUserByEmail(user.email).then((response) => {
+      queries.getUserByEmail(user.email).then((response) => {
         req.session.user_id = response.rows[0].id;
         const userFromDb = response.rows[0];
         res.send({ ...userFromDb });

@@ -274,6 +274,35 @@ nav {
 	font-size: 25px;
 }
 
+.form__userline {
+	width: 95%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0.5em;
+}
+
+.form__userinput {
+	width: 20em;
+	height: 2em;
+	font-size: 15px;
+	display: block;
+	border: none;
+	border-bottom: 2px solid #545149;
+	background: #f4f1ec;
+	outline: none;
+	overflow: auto;
+	resize: none;
+	right: 0;
+}
+
+.form__userinput::placeholder {
+	color: #545149;
+	opacity: 1;
+	font-weight: 600;
+	font-size: 15px;
+}
+
 .form__input {
 	color: #000;
 	font-family: "Bungee", cursive;

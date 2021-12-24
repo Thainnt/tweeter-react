@@ -3,6 +3,7 @@ import Navigation from './components/Navigation';
 import Profile from './components/Profile';
 import TweetForm from './components/TweetForm';
 import TweetList from './components/TweetList';
+import UserAuth from './components/UserAuth';
 import useAppData from './hooks/useAppData';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Navigation />
       <Profile />
+      <UserAuth />
       <main className="container">
         <TweetForm refreshTweets={refreshTweets} />
         <TweetList 
