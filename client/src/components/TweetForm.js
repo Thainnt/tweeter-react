@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function TweetForm(props) {
 
-  const { refreshTweets } = props;
+  const { refreshTweets, user } = props;
 
   const [content, setContent] = useState('');
   const [counter, setCounter] = useState(140);
@@ -12,7 +12,7 @@ export default function TweetForm(props) {
     event.preventDefault();
 
     axios.post('/tweets', {
-      user_id: 1,
+      user_id: user.id,
       content: content
     }).then(res => {
       refreshTweets();

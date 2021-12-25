@@ -1,7 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export default function UserAuth() {
+export default function UserAuth(props) {
+
+  const { updateUser } = props;
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -16,7 +18,8 @@ export default function UserAuth() {
       .then(res => {
         const user = res.data;
         Cookies.set('user', JSON.stringify(user));
-        console.log(Cookies.get('user'));
+        document.getElementById('form__register').reset();
+        updateUser();
       })
       .catch(err => {
         console.log('can not sign up with error: ',err.response.data);
@@ -36,7 +39,8 @@ export default function UserAuth() {
       .then(res => {
         const user = res.data;
         Cookies.set('user', JSON.stringify(user));
-        console.log(Cookies.get('user'));
+        document.getElementById('form__login').reset();
+        updateUser();
       })
       .catch(err => {
         console.log('can not log in with error: ',err.response.data);
@@ -46,13 +50,7 @@ export default function UserAuth() {
 
   return (
     <aside>
-      <div className="user--auth">
-        <i class="fas fa-user-plus"></i>
-        <i class="fas fa-sign-in-alt"></i>
-        <i class="fas fa-sign-out-alt"></i>
-        <i class="fas fa-cog"></i>
-      </div>
-      <form className="register" onSubmit={handleRegister}>
+      <form id="form__register" onSubmit={handleRegister}>
         <label>Sign up</label>
         <div className="form__userline">
           <label for="name">name:</label>
@@ -111,7 +109,7 @@ export default function UserAuth() {
         </div>
         <input type="submit" value="sign up" className="form__input" />
       </form>
-      <form className="register" onSubmit={handleLogIn}>
+      <form id="form__login" onSubmit={handleLogIn}>
         <label>Log in</label>
         <div className="form__userline">
           <label for="email">email:</label>

@@ -45,6 +45,7 @@ queries
 //route to get user login info
 router.post("/login", (req, res) => {
   const user = req.body;
+  console.log(user);
 
   queries.getUserByEmail(user.email).then((response) => {
     //check if email exists

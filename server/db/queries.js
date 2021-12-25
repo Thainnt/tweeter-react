@@ -1,7 +1,7 @@
 const db = require("./db");
 
 const getAllUsers = () => {
-  return db.query(`SELECT users.id, users.name, users.handle, users.avatar FROM users;`);
+  return db.query(`SELECT users.id, users.name, users.handle, users.avatar, users.email, users.password FROM users;`);
 };
 
 const getAllTweets = () => {

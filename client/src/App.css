@@ -297,7 +297,7 @@ nav {
 }
 
 .form__userinput::placeholder {
-	color: #545149;
+	color: #a3a096;
 	opacity: 1;
 	font-weight: 600;
 	font-size: 15px;
@@ -359,6 +359,7 @@ nav {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 200px;
+	height: 200px;
 }
 
 .profile__name {
@@ -375,6 +376,24 @@ nav {
 
 .profile--bold {
 	font-weight: 600;
+}
+
+.user--auth {
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 0.5em;
+}
+
+.user--auth i {
+	transition: all 0.15s ease-in-out;
+	color: #4056a1;
+	opacity: 1;
+}
+
+.user--auth i:hover {
+	opacity: 1;
+	color: red;
+	transform: scale(1.5, 1.5);
 }
 
 @media only screen and (max-width: 1025px) {

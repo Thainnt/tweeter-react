@@ -1,9 +1,7 @@
-import Cookies from "js-cookie";
 
-export default function Profile() {
-  const user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : {};
+export default function Profile(props) {
+  const { user } = props;
 
-  console.log(user);
   return (
     <aside>
       <div className="profile">
@@ -12,6 +10,12 @@ export default function Profile() {
       <br />
       <div className="profile__name">
         <h2><span className="profile--bold">{user.name || 'guest'}</span></h2>
+      </div>
+      <div className="user--auth">
+        <i class="fas fa-user-plus"></i>
+        <i class="fas fa-sign-in-alt"></i>
+        <i class="fas fa-sign-out-alt"></i>
+        <i class="fas fa-cog"></i>
       </div>
     </aside>
   );

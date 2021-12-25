@@ -5,16 +5,17 @@ import TweetForm from './components/TweetForm';
 import TweetList from './components/TweetList';
 import UserAuth from './components/UserAuth';
 import useAppData from './hooks/useAppData';
+import Cookies from "js-cookie";
 
 function App() {
-  const { tweets, users, refreshTweets } = useAppData();
+  const { tweets, users, refreshTweets, user, updateUser } = useAppData();
   return (
     <div className="App">
       <Navigation />
-      <Profile />
-      <UserAuth />
+      <Profile user={user}/>
+      <UserAuth updateUser={updateUser}/>
       <main className="container">
-        <TweetForm refreshTweets={refreshTweets} />
+        <TweetForm refreshTweets={refreshTweets} user={user} />
         <TweetList 
           tweets={tweets}
           users={users}
