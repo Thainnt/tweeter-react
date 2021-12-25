@@ -363,6 +363,11 @@ nav {
 	height: 200px;
 }
 
+.profile__image--select {
+	transform: scale(0.75, 0.75);
+	margin: 0.1em;
+}
+
 .profile__name {
 	text-align: center;
 	width: 100%;
