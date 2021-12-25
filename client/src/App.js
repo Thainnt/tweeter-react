@@ -3,15 +3,19 @@ import Navigation from './components/Navigation';
 import Profile from './components/Profile';
 import TweetForm from './components/TweetForm';
 import TweetList from './components/TweetList';
-import UserAuth from './components/UserAuth';
+import UserLogin from './components/UserLogin';
+import UserRegister from './components/UserRegister';
 import useAppData from './hooks/useAppData';
 
 function App() {
-  const { tweets, users, refreshTweets, user, updateUser, toggleMenu, showUserAuth } = useAppData();
+  const { tweets, users, refreshTweets, user, updateUser, userMenu, userLogin, userRegister, userProfile } = useAppData();
+
   return (
     <div className="App">
       <Navigation />
-      {toggleMenu ? <UserAuth updateUser={updateUser} showUserAuth={showUserAuth}/> : <Profile user={user} updateUser={updateUser} showUserAuth={showUserAuth}/>}
+      { userMenu === 'profile' ? <Profile user={user} updateUser={updateUser} userLogin={userLogin} userRegister={userRegister} /> : null }
+      { userMenu === 'login' ? <UserLogin updateUser={updateUser} userProfile={userProfile} /> : null }
+      { userMenu === 'register' ? <UserRegister updateUser={updateUser} userProfile={userProfile} /> : null }
       <main className="container">
         <TweetForm refreshTweets={refreshTweets} user={user} />
         <TweetList 

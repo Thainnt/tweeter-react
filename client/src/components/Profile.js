@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default function Profile(props) {
-  const { user, updateUser, showUserAuth } = props;
+  const { user, updateUser, userLogin, userRegister } = props;
 
   const handleLogOut = (event) => {
     event.preventDefault();
@@ -28,8 +28,8 @@ export default function Profile(props) {
           <i className="fas fa-cog"></i>
         </div>) : 
         (<div className="user--auth">
-          <i className="fas fa-user-plus" onClick={showUserAuth}></i>
-          <i className="fas fa-sign-in-alt" onClick={showUserAuth}></i>
+          <i className="fas fa-user-plus" onClick={userRegister}></i>
+          <i className="fas fa-sign-in-alt" onClick={userLogin}></i>
         </div>)
       }
     </aside>

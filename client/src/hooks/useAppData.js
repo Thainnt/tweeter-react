@@ -11,7 +11,7 @@ export default function useAppData() {
   const [ tweets, setTweets ] = useState([]);
   const [ users, setUsers ] = useState([]);
   const [ user, setUser ] = useState(currentUser);
-  const [ toggleMenu, setToggleMenu ] = useState(false);
+  const [ userMenu, setUserMenu ] = useState('profile');
 
   const refreshTweets = () => {
     axios.get('/tweets')
@@ -21,11 +21,19 @@ export default function useAppData() {
   };
 
   const updateUser = () => {
-    setUser(JSON.parse(Cookies.get('user')));
+    return Cookies.get('user') ? setUser(JSON.parse(Cookies.get('user'))) : {};
   };
 
-  const showUserAuth = () => {
-    setToggleMenu(!toggleMenu);
+  const userLogin = () => {
+    setUserMenu('login');
+  }
+
+  const userRegister = () => {
+    setUserMenu('register');
+  }
+
+  const userProfile = () => {
+    setUserMenu('profile');
   }
 
   useEffect(() => {
@@ -57,5 +65,5 @@ export default function useAppData() {
 
   // },[]);
 
-  return { tweets, users, refreshTweets, user, updateUser, toggleMenu, showUserAuth };
+  return { tweets, users, refreshTweets, user, updateUser, userMenu, userLogin, userRegister, userProfile };
 };
