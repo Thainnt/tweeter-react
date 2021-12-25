@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export default function UserAuth(props) {
 
-  const { updateUser } = props;
+  const { updateUser, showUserAuth } = props;
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -34,26 +34,25 @@ export default function UserAuth(props) {
     for (const val of formData.entries()) {
       data[val[0]] = val[1];
     }
-    console.log(data);
     axios.post('/login', data)
       .then(res => {
         const user = res.data;
         Cookies.set('user', JSON.stringify(user));
         document.getElementById('form__login').reset();
         updateUser();
+        showUserAuth();
       })
       .catch(err => {
         console.log('can not log in with error: ',err.response.data);
       });
   };
 
-
   return (
     <aside>
       <form id="form__register" onSubmit={handleRegister}>
         <label>Sign up</label>
         <div className="form__userline">
-          <label for="name">name:</label>
+          <label>name:</label>
           <input
             className="form__userinput"
             type="text"
@@ -64,7 +63,7 @@ export default function UserAuth(props) {
           />
         </div>
         <div className="form__userline">
-          <label for="handle">handle:</label>
+          <label>handle:</label>
           <input
             className="form__userinput"
             type="text"
@@ -75,7 +74,7 @@ export default function UserAuth(props) {
           />
         </div>
         <div className="form__userline">
-          <label for="avatar">avatar:</label>
+          <label>avatar:</label>
           <input
             className="form__userinput"
             type="text"
@@ -86,7 +85,7 @@ export default function UserAuth(props) {
           />
         </div>
         <div className="form__userline">
-          <label for="email">email:</label>
+          <label>email:</label>
           <input
             className="form__userinput"
             type="text"
@@ -97,7 +96,7 @@ export default function UserAuth(props) {
           />
         </div>
         <div className="form__userline">
-          <label for="password">password:</label>
+          <label>password:</label>
           <input
             className="form__userinput"
             type="text"
@@ -108,11 +107,12 @@ export default function UserAuth(props) {
           />
         </div>
         <input type="submit" value="sign up" className="form__input" />
+        <input type="button" value="cancel" className="form__input" onClick={showUserAuth}/>
       </form>
       <form id="form__login" onSubmit={handleLogIn}>
         <label>Log in</label>
         <div className="form__userline">
-          <label for="email">email:</label>
+          <label>email:</label>
           <input
             className="form__userinput"
             type="text"
@@ -123,7 +123,7 @@ export default function UserAuth(props) {
           />
         </div>
         <div className="form__userline">
-          <label for="password">password:</label>
+          <label>password:</label>
           <input
             className="form__userinput"
             type="text"
@@ -133,7 +133,8 @@ export default function UserAuth(props) {
             required
           />
         </div>
-        <input type="submit" value="log in" className="form__input" />
+        <input type="submit" value="log in" className="form__input"/>
+        <input type="button" value="cancel" className="form__input" onClick={showUserAuth}/>
       </form>
     </aside>
   );
