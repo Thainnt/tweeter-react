@@ -107,7 +107,9 @@ export default function UserRegister(props) {
             required
           />
         </div>
-        {avatarSelection}
+        <div>
+          {avatarSelection}
+        </div>
         <input type="submit" value="sign up" className="form__input" />
         <input type="button" value="cancel" className="form__input" onClick={userProfile}/>
       </form>
