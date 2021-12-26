@@ -22,7 +22,7 @@ export default function UserLogin(props) {
         userProfile();
       })
       .catch(err => {
-        console.log('can not log in with error: ',err.response.data);
+        console.log('can not log in with error: ',err);
       });
   };
 

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const queries = require("../db/queries");
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 
 // GET /api/users/
 // tester
@@ -42,37 +44,13 @@ queries
   });
 });
 
-//route to get user login info
-router.post("/login", (req, res) => {
-  const user = req.body;
-  console.log(user);
-
-  queries.getUserByEmail(user.email).then((response) => {
-    //check if email exists
-    if (!response.rows[0]) {
-      return res
-        .status(404)
-        .send({ status: "Error", message: "Can not find email" });
-    } else {
-      req.session.user_id = response.rows[0].id;
-      // req.session.user_name = response.rows[0].name;
-      // have this redirect to appropriate page
-      // res.cookie["username"] = response.rows[0].name;
-      // res.redirect("/");
-      // delete user.password;
-      const userFromDb = response.rows[0];
-      res.send({ ...userFromDb });
-    }
-  });
-});
-
 //route to get user register info
 router.post("/register", (req, res) => {
   const name = req.body.name;
   const handle = req.body.handle;
   const avatar = req.body.avatar;
   const email = req.body.email;
-  const password = req.body.password;
+  const password = bcrypt.hashSync(req.body.password, salt);
   const user = {
     name,
     handle,
@@ -100,6 +78,27 @@ router.post("/register", (req, res) => {
       console.log("failed to added user", error);
       res.status(400).send("can not add user");
     });
+});
+
+//route to get user login info
+router.post("/login", (req, res) => {
+  const user = req.body;
+
+  queries.getUserByEmail(user.email).then((response) => {
+    //check if email exists
+    if (!response.rows[0]) {
+      return res
+        .status(404)
+        .send({ status: "Error", message: "Can not find email" });
+    } else {
+      if (bcrypt.compareSync(user.password, response.rows[0].password)) {
+        req.session.user_id = response.rows[0].id;
+        const userFromDb = response.rows[0];
+        return res.send({ ...userFromDb });
+      }
+      res.send({ status: "Error", message: "Incorrect email/password" });
+    }
+  });
 });
 
 //logout route
