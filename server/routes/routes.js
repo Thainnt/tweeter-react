@@ -92,6 +92,7 @@ router.post("/register", (req, res) => {
       queries.getUserByEmail(user.email).then((response) => {
         req.session.user_id = response.rows[0].id;
         const userFromDb = response.rows[0];
+        console.log('returnuser:',userFromDb);
         res.send({ ...userFromDb });
       });
     })

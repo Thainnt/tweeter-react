@@ -17,11 +17,24 @@ export default function useAppData() {
     axios.get('/tweets')
       .then(response => {
         setTweets(response.data);
+      })
+      .catch(err => {
+        console.error(err);
+    });
+  };
+
+  const refreshUsers = () => {
+    axios.get('/users')
+      .then(res => {
+        setUsers(res.data);
+      })
+      .catch(err => {
+        console.error(err);
       });
   };
 
   const updateUser = () => {
-    return Cookies.get('user') ? setUser(JSON.parse(Cookies.get('user'))) : {};
+    return Cookies.get('user') ? setUser(JSON.parse(Cookies.get('user'))) : setUser({});
   };
 
   const userLogin = () => {
@@ -37,17 +50,8 @@ export default function useAppData() {
   }
 
   useEffect(() => {
-
-    axios.get('/users')
-      .then(res => {
-      setUsers(res.data);
-      })
-      .catch(err => {
-        console.error(err);
-    });
-
+    refreshUsers();
     refreshTweets();
-
   },[]);
 
   // useEffect(() => {
@@ -65,5 +69,5 @@ export default function useAppData() {
 
   // },[]);
 
-  return { tweets, users, refreshTweets, user, updateUser, userMenu, userLogin, userRegister, userProfile };
+  return { tweets, users, refreshTweets, refreshUsers, user, updateUser, userMenu, userLogin, userRegister, userProfile };
 };

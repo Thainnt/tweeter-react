@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function UserRegister(props) {
 
-  const { updateUser, userProfile } = props;
+  const { updateUser, userProfile, refreshUsers } = props;
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -14,7 +14,6 @@ export default function UserRegister(props) {
     for (const val of formData.entries()) {
       data[val[0]] = val[1];
     }
-    console.log(data);
     axios.post('/register', data)
       .then(res => {
         const user = res.data;
@@ -22,9 +21,10 @@ export default function UserRegister(props) {
         document.getElementById('form__register').reset();
         updateUser();
         userProfile();
+        refreshUsers();
       })
       .catch(err => {
-        console.log('can not sign up with error: ',err.response.data);
+        console.log('can not sign up with error: ',err);
       });
   };
 
@@ -81,7 +81,7 @@ export default function UserRegister(props) {
             name="avatar"
             value={ava}
             onChange={handleClick}
-            placeholder="a nice picture here"
+            placeholder="select below"
             required
           />
         </div>
@@ -107,7 +107,7 @@ export default function UserRegister(props) {
             required
           />
         </div>
-        <div>
+        <div className="avatar-samples">
           {avatarSelection}
         </div>
         <input type="submit" value="sign up" className="form__input" />

@@ -5,7 +5,7 @@ export default function Tweet(props) {
       <header className="tweet--header">
         <img className="tweet--avatar" alt="avatar" src={avatar} />
         <h2 className="tweet--name">{name}</h2>
-        <small className="tweet--handle">{handle}</small>
+        <small className="tweet--handle">@{handle}</small>
       </header>
 
       <div className="tweet--body">

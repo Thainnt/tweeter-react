@@ -8,14 +8,14 @@ import UserRegister from './components/UserRegister';
 import useAppData from './hooks/useAppData';
 
 function App() {
-  const { tweets, users, refreshTweets, user, updateUser, userMenu, userLogin, userRegister, userProfile } = useAppData();
+  const { tweets, users, refreshTweets, refreshUsers, user, updateUser, userMenu, userLogin, userRegister, userProfile } = useAppData();
 
   return (
     <div className="App">
       <Navigation />
       { userMenu === 'profile' ? <Profile user={user} updateUser={updateUser} userLogin={userLogin} userRegister={userRegister} /> : null }
       { userMenu === 'login' ? <UserLogin updateUser={updateUser} userProfile={userProfile} /> : null }
-      { userMenu === 'register' ? <UserRegister updateUser={updateUser} userProfile={userProfile} /> : null }
+      { userMenu === 'register' ? <UserRegister updateUser={updateUser} userProfile={userProfile} refreshUsers={refreshUsers}/> : null }
       <main className="container">
         <TweetForm refreshTweets={refreshTweets} user={user} />
         <TweetList 

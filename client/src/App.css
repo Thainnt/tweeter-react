@@ -363,10 +363,20 @@ nav {
 	height: 200px;
 }
 
+.avatar-samples {
+	display: flex;
+	justify-content: space-evenly	;
+}
+
 .profile__image--select {
 	width: 9%;
 	height: 9%;
-	margin: 0.05em;
+	border-radius: 0.5em;
+}
+
+.profile__image--select:hover {
+	background-color: lightcyan;
+	transform: scale(1.2, 1.2);
 }
 
 .profile__name {
@@ -400,7 +410,7 @@ nav {
 .user--auth i:hover {
 	opacity: 1;
 	color: red;
-	transform: scale(1.5, 1.5);
+	transform: scale(1.2, 1.2);
 }
 
 @media only screen and (max-width: 1025px) {
