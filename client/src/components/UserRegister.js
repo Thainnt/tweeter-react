@@ -100,7 +100,7 @@ export default function UserRegister(props) {
           <label>password:</label>
           <input
             className="form__userinput"
-            type="text"
+            type="password"
             id="password"
             name="password"
             placeholder="some secret pass phases?"
