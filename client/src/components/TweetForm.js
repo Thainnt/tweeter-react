@@ -62,6 +62,7 @@ export default function TweetForm(props) {
           <span className="error-message">Uhmmm, I can not hear you, let tweet something</span>
         </div>}
         <textarea
+          autoFocus
           value={content}
           onChange={handleInput}
           className="form__textarea"

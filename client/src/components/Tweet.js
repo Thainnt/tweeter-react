@@ -15,9 +15,9 @@ export default function Tweet(props) {
       <footer className="tweet--footer">
         <small className="footer--age">{created_at}<small>
             <span className="footer--actions">
-              <a href="#"><i className="fa fa-flag"></i></a>
-              <a href="#"><i className="fa fa-retweet"></i></a>
-              <a href="#"><i className="fa fa-heart"></i></a>'
+              <i className="fa fa-flag"></i>
+              <i className="fa fa-retweet"></i>
+              <i className="fa fa-heart"></i>
             </span>
           </small></small></footer>
     </article>

@@ -12,6 +12,7 @@ export default function useAppData() {
   const [ users, setUsers ] = useState([]);
   const [ user, setUser ] = useState(currentUser);
   const [ userMenu, setUserMenu ] = useState('profile');
+  const [ toggleTweetForm, setToggleTweetForm] = useState(true);
 
   const refreshTweets = () => {
     axios.get('/tweets')
@@ -69,5 +70,5 @@ export default function useAppData() {
 
   // },[]);
 
-  return { tweets, users, refreshTweets, refreshUsers, user, updateUser, userMenu, userLogin, userRegister, userProfile };
+  return { tweets, users, refreshTweets, refreshUsers, user, updateUser, userMenu, userLogin, userRegister, userProfile, toggleTweetForm, setToggleTweetForm };
 };
