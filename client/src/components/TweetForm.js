@@ -7,19 +7,29 @@ export default function TweetForm(props) {
 
   const [content, setContent] = useState('');
   const [counter, setCounter] = useState(140);
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = (event => {
     event.preventDefault();
+    const goodTweet = counter >= 0 && counter < 140;
 
-    axios.post('/tweets', {
-      user_id: user.id,
-      content: content
-    }).then(res => {
-      refreshTweets();
-    }).catch(err => {
-      console.log('can not tweet with error: ',err.response.data);
-    });
-    reset();
+    setShowError(true);
+
+    if (user.id && goodTweet) {
+      axios.post('/tweets', {
+        user_id: user.id,
+        content: content
+      }).then(res => {
+        refreshTweets();
+      }).catch(err => {
+        console.log('can not tweet with error: ',err.response.data);
+      });
+      reset();
+    }
+    
+    if (!user.id) {
+      alert('Please login/register to tweet');
+    }
   });
 
   const handleInput = (event => {
@@ -27,11 +37,12 @@ export default function TweetForm(props) {
 
     setContent(event.target.value);
     setCounter(140 - content.length);
-  })
+  });
 
   const reset = () => {
     setContent('');
     setCounter(140);
+    setShowError(false);
   };
 
   return (
@@ -40,6 +51,16 @@ export default function TweetForm(props) {
         className="newtweet__form"
         onSubmit={handleSubmit}
         >
+        {(counter < 0 && showError) && 
+        <div>
+          <i className="fa fa-exclamation-triangle"></i>
+          <span className="error-message">Oop, you are humming too long, let's make it shorter</span>
+          </div>}
+        {(counter === 140 && showError) &&
+        <div>
+          <i className="fa fa-exclamation-triangle"></i>
+          <span className="error-message">Uhmmm, I can not hear you, let tweet something</span>
+        </div>}
         <textarea
           value={content}
           onChange={handleInput}
@@ -48,7 +69,7 @@ export default function TweetForm(props) {
           placeholder="What are you humming about?"
         />
         <input type="submit" value="Tweet" className="form__input" />
-        <span className="form__counter">{counter}</span>
+        <span className={"form__counter" + (counter < 0 ? "--red" : "")}>{counter}</span>
       </form>
     </section>
   );

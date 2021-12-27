@@ -326,7 +326,12 @@ nav {
 	margin-top: 0.6em;
 }
 
-.form--red {
+.form__counter--red {
+	font-family: "Bungee", cursive;
+	font-size: 1em;
+	float: right;
+	margin-right: 8px;
+	margin-top: 0.6em;
 	color: #f13c20;
 }
 
@@ -344,7 +349,12 @@ nav {
 	display: inline;
 }
 
+.error-message {
+	color: #f13c20;
+}
+
 .fa-exclamation-triangle {
+	color: #f13c20;
 	margin: 0 4px;
 }
 
