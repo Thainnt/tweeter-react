@@ -1,5 +1,5 @@
-# Tweeter-React
-
+# Tweeter
+React, Express, PostgreSQL
 ## Set up server side
 `npm i`
 - May require for pg-native:
