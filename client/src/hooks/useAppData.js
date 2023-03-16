@@ -3,10 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export default function useAppData() {
-  // const [state, setState] = useState( {
-  //   tweets:[],
-  //   users:[]
-  // });
+
   const currentUser = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : {};
   const [ tweets, setTweets ] = useState([]);
   const [ users, setUsers ] = useState([]);
@@ -54,21 +51,6 @@ export default function useAppData() {
     refreshUsers();
     refreshTweets();
   },[]);
-
-  // useEffect(() => {
-
-  //   Promise.all([
-  //     axios.get('/tweets'),
-  //     axios.get('/users')
-  //   ])
-  //     .then(res => {
-  //     setState({...state, tweets:res[0].data, users:res[1].data});
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //   });
-
-  // },[]);
 
   return { tweets, users, refreshTweets, refreshUsers, user, updateUser, userMenu, userLogin, userRegister, userProfile, toggleTweetForm, setToggleTweetForm };
 };
