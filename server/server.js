@@ -23,9 +23,3 @@ app.use('/', router);
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 });
-
-// app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// app.get('/api', (req, res) => {
-  // res.send({ express: 'Server connected to react' });
-// });

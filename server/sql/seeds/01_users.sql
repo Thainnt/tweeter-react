@@ -1,6 +1,6 @@
 INSERT INTO users (name, handle, avatar, email, password, is_admin)
   VALUES
-  ('Twitor', 'TwTor', 'https://i.imgur.com/5fUVPRP.png', 'twitor@twtor', 'none', TRUE),
+  ('Twitor', 'TwT', 'https://i.imgur.com/5fUVPRP.png', 'twitor@twt.or', 'none', TRUE),
 
   ('Newton', 'SirIsaac', 'https://i.imgur.com/73hZDYK.png', 'newton@sirisaac', 'none', FALSE),
 

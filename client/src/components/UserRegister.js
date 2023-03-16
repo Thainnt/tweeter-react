@@ -57,7 +57,7 @@ export default function UserRegister(props) {
             type="text"
             id="name"
             name="name"
-            placeholder="yours?"
+            placeholder="Your name?"
             required
           />
         </div>
@@ -68,7 +68,7 @@ export default function UserRegister(props) {
             type="text"
             id="handle"
             name="handle"
-            placeholder="your name of choice"
+            placeholder="pick a handle"
             required
           />
         </div>
@@ -81,7 +81,7 @@ export default function UserRegister(props) {
             name="avatar"
             value={ava}
             onChange={handleClick}
-            placeholder="select below"
+            placeholder="select one below"
             required
           />
         </div>
@@ -103,7 +103,7 @@ export default function UserRegister(props) {
             type="password"
             id="password"
             name="password"
-            placeholder="some secret pass phases?"
+            placeholder="a secret password?"
             required
           />
         </div>

@@ -59,7 +59,7 @@ export default function TweetForm(props) {
         {(counter === 140 && showError) &&
         <div>
           <i className="fa fa-exclamation-triangle"></i>
-          <span className="error-message">Uhmmm, I can not hear you, let tweet something</span>
+          <span className="error-message">Uhm, can not hear you, please say something</span>
         </div>}
         <textarea
           autoFocus
