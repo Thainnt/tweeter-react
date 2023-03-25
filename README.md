@@ -1,5 +1,6 @@
 # Tweeter
-React, Express, PostgreSQL
+A Twitter clone app with responsive design for desktop and mobile device screen sizes.
+Tech stack: NodeJS, React, Express, PostgreSQL
 ## Set up server side
 `npm i`
 - May require for pg-native:
